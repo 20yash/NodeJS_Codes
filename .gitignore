@@ -6,3 +6,5 @@ node_modules/
 
 
 #other enteries..
+
+#'git rm -r --cached node_modules' is a command used to remove node modules folder which is not so necessary
