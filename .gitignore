@@ -1,0 +1,8 @@
+#ignore node_modules directory
+
+node_modules/
+#after node_modules because all other folders in node modules are no need to be tracked
+
+
+
+#other enteries..
