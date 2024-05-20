@@ -7,8 +7,10 @@ require('dotenv').config()
 
 // const mongoURL= 'mongodb://localhost:27017/hotels'//Replace 'mydatabase' with your database name in URL
 
-const mongoURL_LOCAL= process.env.MONGODB_URL_LOCAL//HIDING THE LOCAL URL AS WELL  in .env file
+// const mongoURL_LOCAL= process.env.MONGODB_URL_LOCAL//HIDING THE LOCAL URL AS WELL  in .env file
 
+
+// const mongoURL_LOCAL= process.env.mongoURL_LOCAL
 
 //the above URL at line 5 used to connect with local database
 

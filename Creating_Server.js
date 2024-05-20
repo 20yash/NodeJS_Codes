@@ -229,6 +229,12 @@ app.use('/menu',menuRouter)
 // })
 
 
+//here is the link to MONGODB ATLAS
+//https://cloud.mongodb.com/v2/664b0a145404bf08a382276a#/clusters
+
+//here is the link to render
+//https://dashboard.render.com/web/srv-cp5jte21hbls73fgofk0/deploys/dep-cp5jte21hbls73fgofpg
+
 app.listen(PORT,()=>
 {
     console.log("server is running on port 3001");
