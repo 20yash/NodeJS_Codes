@@ -2,11 +2,17 @@ const express = require('express')
 const app = express();//app is instance of Express(blueprint or map)
 //app has all the functionalities to use to create server
 
+
 const db = require('./db')
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json())//stored in req.body here
 //bodyparser.json() automatically parses the JSON data from the request body->converts into JS Object and ->stores in req.body
+
+require('dotenv').config()
+const PORT = process.env.PORT || 3001;
+
+
 
 
 const Menu = require('./Models/Menu')//using Menu model here to perform certain operations on database
@@ -223,7 +229,7 @@ app.use('/menu',menuRouter)
 // })
 
 
-app.listen(3001,()=>
+app.listen(PORT,()=>
 {
     console.log("server is running on port 3001");
 })//3000 is port here
