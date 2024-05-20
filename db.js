@@ -9,8 +9,6 @@ const mongoose = require('mongoose')
 //this URL at line no.10 used to connect with online Database cluster at MongoDB atlas
 const mongoURL= 'mongodb+srv://Yash20:Qwerty12345@yash20.axfd0jr.mongodb.net/'//Replace 'mydatabase' with your database name in URL
 
-//MongoDB atlas provides a free cluister for users where you can host your db for free
-//we just need to replave the link on line 5 with the link from the MongoDB atlas
 
 //now setting up MongoDB connection
 //mongoose.connect() establishes the connection
