@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 
 const mongoURL= 'mongodb://localhost:27017/hotels'//Replace 'mydatabase' with your database name in URL
 
+//MongoDB atlas provides a free cluister for users where you can host your db for free
+//we just need to replave the link on line 5 with the link from the MongoDB atlas
 
 //now setting up MongoDB connection
 //mongoose.connect() establishes the connection
