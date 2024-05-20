@@ -2,7 +2,12 @@ const mongoose = require('mongoose')
 
 //define the mongoDB connection URL
 
-const mongoURL= 'mongodb://localhost:27017/hotels'//Replace 'mydatabase' with your database name in URL
+// const mongoURL= 'mongodb://localhost:27017/hotels'//Replace 'mydatabase' with your database name in URL
+//the above URL at line 5 used to connect with local database
+
+
+//this URL at line no.10 used to connect with online Database cluster at MongoDB atlas
+const mongoURL= 'mongodb+srv://Yash20:Qwerty12345@yash20.axfd0jr.mongodb.net/'//Replace 'mydatabase' with your database name in URL
 
 //MongoDB atlas provides a free cluister for users where you can host your db for free
 //we just need to replave the link on line 5 with the link from the MongoDB atlas
