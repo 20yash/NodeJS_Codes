@@ -38,13 +38,13 @@ router.get('/', async(req,res)=>{
     }
 })
 
-router.get('/:taste',async (req,res)=>{
+router.get('/:tastey',async (req,res)=>{
     try {
-        const taste = req.params.workType;
+        const tastey = req.params.tastey;
 
-        if(taste == 'sweet'|| taste == 'sour' || taste =='spicy')
+        if(tastey == 'sweet'|| tastey == 'sour' || tastey =='spicy')
         {
-            const response = await Menu.find({taste:taste})
+            const response = await Menu.find({taste:tastey})
             res.status(200).json(response)
             console.log("here is the taste of your food",response);
         }

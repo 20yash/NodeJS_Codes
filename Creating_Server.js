@@ -3,6 +3,63 @@ const app = express();//app is instance of Express(blueprint or map)
 //app has all the functionalities to use to create server
 
 
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy;//passport local strategy is part of passport.js authentication middleware
+//it is designed to handle username and password based authentication
+// const Person = require('./Models/Person');
+
+
+passport.use(new LocalStrategy(async (USERNAME,password,done)=>{
+    //authentication logic here
+    try {
+        console.log('received credentials',USERNAME,password);
+        const user =await  Person.findOne({username:USERNAME})
+
+        if(user === null){
+            return done(null, false,{message:'user not found in our records,INCORRECT USERNAME!'})
+        }
+        const isPasswordMatch = user.password === password ? true:false;
+        if(isPasswordMatch === true){
+            return done(null,user)
+        }
+        else
+        return done(NULL,false,{message:"PASSWORD IS INCORRECT"})
+    } catch (error) {
+        return done(error)
+    }
+}))
+
+
+app.use(passport.initialize())
+
+const localAuthMiddleware = passport.authenticate('local',{session:false})
+
+app.get('/',localAuthMiddleware, (req, res)=> {
+    res.send('Hello World')
+    console.log("hello world");
+   })// implemented middleware on '/' end point
+  
+
+
+//Middleware function here
+
+
+
+//middleware is like the behind the scene process;
+//series of function that our request goes through before reaching the final destination
+const logRequest = (req,res,next)=>{
+    console.log(`[${new Date().toLocaleString()}]request made to: ${req.originalUrl}`);
+    next();//move on to the next phase; if next() is not mentioned here then it will not go onto next step
+    //in express.js ,the next function is callback that signals to Express that the current middleware function has completed
+    //and its time to move on to the next middleware function or route handler in the chain
+}
+
+app.use(logRequest)//using middleware everywhere by simply using app.use
+
+
+
+
+
 const db = require('./db')
 
 const bodyParser = require('body-parser');
@@ -21,12 +78,13 @@ const Person = require('./Models/Person')//using person model here to perform ce
 
 
 const personRouter =require('./Routes/PersonRoutes')
-app.use('/person',personRouter)
+app.use('/person',localAuthMiddleware,personRouter)
 
 
 
 const menuRouter = require('./Routes/menuRoutes')
-app.use('/menu',menuRouter)
+app.use('/menu',localAuthMiddleware,menuRouter)
+
 
 
 //using get here to getting the information from the server

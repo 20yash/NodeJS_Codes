@@ -6,13 +6,12 @@ require('dotenv').config()
 //define the mongoDB connection URL
 
 // const mongoURL= 'mongodb://localhost:27017/hotels'//Replace 'mydatabase' with your database name in URL
+const mongoURL= process.env.mongoURL_LOCAL
 
 // const mongoURL_LOCAL= process.env.MONGODB_URL_LOCAL//HIDING THE LOCAL URL AS WELL  in .env file
 
 
-// const mongoURL_LOCAL= process.env.mongoURL_LOCAL
-
-//the above URL at line 5 used to connect with local database
+//the above URL at line 8 and 9 used to connect with local database
 
 
 //SENSITIVE LINK HERE+++++++++
@@ -21,9 +20,9 @@ require('dotenv').config()
 
 //ACTUAL WAY TO DEAL WITH SENSITIVE LINK
 
-const mongoURL = process.env.MONGODB_URL
+// const mongoURL = process.env.MONGODB_URL
 
-
+//URL at line 23 is used to connect to mongoDB server online not local
 
 //MongoDB atlas provides a free cluister for users where you can host your db for free
 //we just need to replave the link on line 5 with the link from the MongoDB atlas
