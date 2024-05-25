@@ -2,39 +2,41 @@ const express = require('express')
 const app = express();//app is instance of Express(blueprint or map)
 //app has all the functionalities to use to create server
 
+const passport = require('./auth')
 
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy;//passport local strategy is part of passport.js authentication middleware
-//it is designed to handle username and password based authentication
-// const Person = require('./Models/Person');
+// const passport = require('passport')
+// const LocalStrategy = require('passport-local').Strategy;//passport local strategy is part of passport.js authentication middleware
+// //it is designed to handle username and password based authentication
+// // const Person = require('./Models/Person');
 
 
-passport.use(new LocalStrategy(async (USERNAME,password,done)=>{
-    //authentication logic here
-    try {
-        console.log('received credentials',USERNAME,password);
-        const user =await  Person.findOne({username:USERNAME})
+// passport.use(new LocalStrategy(async (USERNAME,password,done)=>{
+//     //authentication logic here
+//     try {
+//         console.log('received credentials',USERNAME,password);
+//         const user =await  Person.findOne({username:USERNAME})
 
-        if(user === null){
-            return done(null, false,{message:'user not found in our records,INCORRECT USERNAME!'})
-        }
-        const isPasswordMatch = user.password === password ? true:false;
-        if(isPasswordMatch === true){
-            return done(null,user)
-        }
-        else
-        return done(NULL,false,{message:"PASSWORD IS INCORRECT"})
-    } catch (error) {
-        return done(error)
-    }
-}))
+//         if(user === null){
+//             return done(null, false,{message:'user not found in our records,INCORRECT USERNAME!'})
+//         }
+//         const isPasswordMatch = user.password === password ? true:false;
+//         if(isPasswordMatch === true){
+//             return done(null,user)
+//         }
+//         else
+//         return done(NULL,false,{message:"PASSWORD IS INCORRECT"})
+//     } catch (error) {
+//         return done(error)
+//     }
+// }))
+
 
 
 app.use(passport.initialize())
 
 const localAuthMiddleware = passport.authenticate('local',{session:false})
 
-app.get('/',localAuthMiddleware, (req, res)=> {
+app.get('/', (req, res)=> {
     res.send('Hello World')
     console.log("hello world");
    })// implemented middleware on '/' end point
@@ -83,7 +85,7 @@ app.use('/person',localAuthMiddleware,personRouter)
 
 
 const menuRouter = require('./Routes/menuRoutes')
-app.use('/menu',localAuthMiddleware,menuRouter)
+app.use('/menu',menuRouter)
 
 
 
