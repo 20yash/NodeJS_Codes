@@ -80,7 +80,7 @@ const Person = require('./Models/Person')//using person model here to perform ce
 
 
 const personRouter =require('./Routes/PersonRoutes')
-app.use('/person',localAuthMiddleware,personRouter)
+app.use('/person',personRouter)
 
 
 
