@@ -83,6 +83,7 @@ router.post('/signup',async(req,res)=>{
 
 
   //creating a Profile routes here
+  //our target is to get the entire record of data by using the token id
   router.get('/profile',jwtAuthMiddleware, async(req,res)=>{
     try {
       const userData = req.user;
